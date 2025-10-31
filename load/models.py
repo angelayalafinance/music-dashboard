@@ -18,3 +18,14 @@ class ShowEvent(Base):
     date = Column(DateTime, nullable=False)
     artist = Column(String, nullable=False)
     ticket_price = Column(Numeric)
+
+
+class Artist(Base):
+    __tablename__ = 'artists'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    genre = Column(String)
+    popularity = Column(Integer)
+
+

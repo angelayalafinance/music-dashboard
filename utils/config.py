@@ -2,19 +2,21 @@ import os
 from dotenv import load_dotenv
 
 # Get the root directory one step back from the current directory
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 # Load environment variables
 load_dotenv(os.path.join(ROOT_DIR, '.env'))
 
-############################################################################
-# FLASK API CONFIGURATION
-############################################################################
-API_TOKEN = os.getenv('API_TOKEN')
-API_URL = os.getenv('API_URL')
+# Data directory path
+DATA_DIR = os.path.join(ROOT_DIR, 'data')
+
+# Tokens directory path
+TOKENS_DIR = os.path.join(ROOT_DIR, 'tokens')
+SPOTIFY_TOKEN_PATH = os.path.join(TOKENS_DIR, 'spotify_token.json')
+
+# Make sure directories exist
+os.makedirs(TOKENS_DIR, exist_ok=True)
 
 
-load_dotenv()
-
-SPOTIFY_CK = os.getenv("SPOTIFY_CK")
-SPOTIFY_CS = os.getenv("SPOTIFY_CS")
+SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
+SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")

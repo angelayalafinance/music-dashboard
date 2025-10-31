@@ -1,21 +1,51 @@
-from asyncio.log import logger
-import os
 import base64
 import requests
 from datetime import datetime, timedelta
-from urllib.parse import urlencode, parse_qs, urlparse
+from urllib.parse import urlencode, urlparse
 from typing import Dict
 import webbrowser
 import time
 import json
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from utils.config import SPOTIFY_TOKEN_PATH, SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET
 
 class OAuthCallbackHandler(BaseHTTPRequestHandler):
     """HTTP handler to capture OAuth callback"""
     def __init__(self, request, client_address, server):
         self.server: OAuthCallbackServer = server
         super().__init__(request, client_address, server)
+
+    def do_GET(self):
+        """Handle GET request from Spotify OAuth redirect"""
+        try:
+            from urllib.parse import parse_qs, urlparse
+
+            # Parse the full URL and extract the query parameters
+            query = urlparse(self.path).query
+            params = parse_qs(query)
+
+            if 'error' in params:
+                self.server.auth_error = params['error'][0]
+                self._send_response(400, "❌ Authentication failed. You can close this tab.")
+            elif 'code' in params:
+                self.server.auth_code = params['code'][0]
+                self._send_response(200, "✅ Authentication successful! You can close this tab.")
+            else:
+                self._send_response(400, "❌ Missing authorization code.")
+        except Exception as e:
+            self._send_response(500, f"❌ Error processing request: {e}")
+
+    def log_message(self, format, *args):
+        # Suppress console logging from HTTP server
+        return
+
+    def _send_response(self, code, message):
+        """Send a simple HTML response to the browser"""
+        self.send_response(code)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(f"<html><body><h2>{message}</h2></body></html>".encode("utf-8"))
 
 class OAuthCallbackServer(HTTPServer):
     """Custom server to store authentication results"""
@@ -25,18 +55,14 @@ class OAuthCallbackServer(HTTPServer):
         self.auth_error = None
         self.timeout_reached = False
 
-class SpotifyUserData:
-    """
-    Extract your personal Spotify data with automatic authentication
-    """
-    
+class SpotifyAuth:
+    """Extract your personal Spotify data with automatic authentication """
     def __init__(self, client_id: str = None, client_secret: str = None, redirect_uri: str = None):
-        self.client_id = client_id or os.getenv('SPOTIFY_CLIENT_ID')
-        self.client_secret = client_secret or os.getenv('SPOTIFY_CLIENT_SECRET')
-        
+        self.client_id = client_id or SPOTIFY_CLIENT_ID
+        self.client_secret = client_secret or SPOTIFY_CLIENT_SECRET
+
         # Use a valid redirect URI - you MUST register this in your Spotify app settings
         self.redirect_uri = redirect_uri or "http://127.0.0.1:8050/"
-        self.base_url = "https://api.spotify.com/v1"
         self.auth_url = "https://accounts.spotify.com/api/token"
         
         self.access_token = None
@@ -168,13 +194,13 @@ class SpotifyUserData:
             'redirect_uri': self.redirect_uri
         }
         
-        with open('spotify_tokens.json', 'w') as f:
+        with open(SPOTIFY_TOKEN_PATH, 'w') as f:
             json.dump(token_data, f, indent=2)
 
     def load_tokens(self) -> bool:
         """Load tokens from file"""
         try:
-            with open('spotify_tokens.json', 'r') as f:
+            with open(SPOTIFY_TOKEN_PATH, 'r') as f:
                 token_data = json.load(f)
             
             self.access_token = token_data['access_token']
