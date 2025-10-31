@@ -19,7 +19,6 @@ class OAuthCallbackHandler(BaseHTTPRequestHandler):
 
 class OAuthCallbackServer(HTTPServer):
     """Custom server to store authentication results"""
-    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.auth_code = None
@@ -52,7 +51,6 @@ class SpotifyUserData:
         Automatic authentication with local callback server
         Returns True if successful, False otherwise
         """
-        print("🚀 Starting automatic authentication...")
         
         # Define scopes for the data we want to access
         scopes = [
@@ -193,7 +191,6 @@ class SpotifyUserData:
             
             return True
         except (FileNotFoundError, KeyError, ValueError) as e:
-            print(f"❌ Could not load saved tokens: {e}")
             return False
 
     def _refresh_access_token(self) -> None:
