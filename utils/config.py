@@ -10,6 +10,9 @@ load_dotenv(os.path.join(ROOT_DIR, '.env'))
 # Data directory path
 DATA_DIR = os.path.join(ROOT_DIR, 'data')
 
+# Database path
+DB_PATH = os.path.join(DATA_DIR, 'data.db')
+
 # Tokens directory path
 TOKENS_DIR = os.path.join(ROOT_DIR, 'tokens')
 SPOTIFY_TOKEN_PATH = os.path.join(TOKENS_DIR, 'spotify_token.json')
