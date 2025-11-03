@@ -208,6 +208,6 @@ __marimo__/
 
 
 data/*
-data/data.db
+database/data.db
 
 tokens/*

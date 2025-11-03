@@ -1,4 +1,4 @@
-from db import Base
+from database.db import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Numeric, Boolean, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -33,23 +33,6 @@ class ShowEvent(Base):
     venue = relationship("MusicVenue", back_populates="shows")
     artists = relationship("ShowArtist", back_populates="show")
 
-class Artist(Base):
-    __tablename__ = 'artists'
-    
-    id = Column(String, primary_key=True, index=True)  # Spotify artist ID
-    name = Column(String, nullable=False)
-    genre = Column(String)
-    popularity = Column(Integer)
-    followers = Column(Integer)
-    spotify_url = Column(String)
-    image_url = Column(String)
-    created_at = Column(DateTime, server_default=func.now())
-    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
-    
-    # Relationships
-    top_tracks = relationship("TopTrack", back_populates="artist")
-    show_appearances = relationship("ShowArtist", back_populates="artist")
-    top_artist_rankings = relationship("TopArtist", back_populates="artist")
 
 class ShowArtist(Base):
     __tablename__ = 'show_artists'
@@ -67,51 +50,69 @@ class ShowArtist(Base):
     artist = relationship("Artist", back_populates="show_appearances")
     show = relationship("ShowEvent", back_populates="artists")
 
+class Artist(Base):
+    __tablename__ = 'artists'
+    
+    id = Column(String, primary_key=True)  # Spotify artist ID
+    name = Column(String, nullable=False)
+    genre = Column(String)
+    popularity = Column(Integer)
+    followers = Column(Integer)
+    spotify_url = Column(String)
+    image_url = Column(String)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+    
+    # Relationships
+    top_tracks = relationship("TopTrack", back_populates="artist")
+    top_artist_rankings = relationship("TopArtist", back_populates="artist")
+    listening_history = relationship("ListeningHistory", back_populates="artist")
+
 class TopTrack(Base):
     __tablename__ = 'top_tracks'
     
-    id = Column(Integer, primary_key=True, index=True)  # Synthetic key
-    track_id = Column(String, nullable=False)  # Spotify track ID
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    track_id = Column(String, nullable=False)
     name = Column(String, nullable=False)
     artist_id = Column(String, ForeignKey('artists.id'), nullable=False)
     album_name = Column(String)
-    album_id = Column(String)  # Spotify album ID
+    album_id = Column(String)
     popularity = Column(Integer)
     duration_ms = Column(Integer)
     explicit = Column(Boolean)
-    extracted_date = Column(DateTime, nullable=False)  # When this data was pulled
-    time_range = Column(String, nullable=False)  # 'short_term', 'medium_term', 'long_term'
-    rank = Column(Integer)  # Position in top tracks
-    created_at = Column(DateTime, server_default=func.now())
+    extracted_date = Column(DateTime, nullable=False)
+    time_range = Column(String, nullable=False)
+    rank = Column(Integer)
+    created_at = Column(DateTime)
     
-    # Relationships
+    # Relationship
     artist = relationship("Artist", back_populates="top_tracks")
 
 class TopArtist(Base):
     __tablename__ = 'top_artists'
     
-    id = Column(Integer, primary_key=True, index=True)  # Synthetic key
+    id = Column(Integer, primary_key=True, autoincrement=True)
     artist_id = Column(String, ForeignKey('artists.id'), nullable=False)
     extracted_date = Column(DateTime, nullable=False)
-    time_range = Column(String, nullable=False)  # 'short_term', 'medium_term', 'long_term'
-    rank = Column(Integer, nullable=False)  # Position in top artists
-    created_at = Column(DateTime, server_default=func.now())
+    time_range = Column(String, nullable=False)
+    rank = Column(Integer, nullable=False)
+    created_at = Column(DateTime)
     
-    # Relationships
+    # Relationship
     artist = relationship("Artist", back_populates="top_artist_rankings")
 
 class ListeningHistory(Base):
     __tablename__ = 'listening_history'
     
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     track_id = Column(String, nullable=False)
     track_name = Column(String, nullable=False)
     artist_id = Column(String, ForeignKey('artists.id'))
     artist_name = Column(String)
-    played_at = Column(DateTime, nullable=False)  # When you listened to it
-    context = Column(String)  # How you listened (playlist, album, etc.)
-    extracted_at = Column(DateTime, nullable=False)  # When data was pulled
-    created_at = Column(DateTime, server_default=func.now())
+    played_at = Column(DateTime, nullable=False)
+    context = Column(String)
+    extracted_at = Column(DateTime, nullable=False)
+    created_at = Column(DateTime)
     
     # Relationship
-    artist = relationship("Artist")
+    artist = relationship("Artist", back_populates="listening_history")
