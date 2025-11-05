@@ -9,7 +9,7 @@ def get_json_logger(name, log_level=logging.INFO):
     logger = logging.getLogger(name)
     logger.setLevel(log_level)
 
-    log_file_path = os.path.join(LOGS_DIR, f"{name}.log")
+    log_file_path = os.path.join(LOG_DIR, f"{name}.log")
 
     handler = RotatingFileHandler(log_file_path, maxBytes=10*1024*1024)
     formatter = jsonlogger.JsonFormatter(
@@ -20,3 +20,5 @@ def get_json_logger(name, log_level=logging.INFO):
     logger.addHandler(handler)
     
     return logger
+
+etl_logger = get_json_logger('etl')

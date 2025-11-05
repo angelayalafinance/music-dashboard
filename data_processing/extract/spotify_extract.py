@@ -1,8 +1,7 @@
 # extract/spotify_extract.py
 import requests
-import os
 from typing import Dict, List
-from extract.auth import SpotifyAuth
+from data_processing.extract.auth import SpotifyAuth
 
 class SpotifyDataExtractor:
     """Class to extract Spotify user data using SpotifyAuth"""

@@ -67,6 +67,7 @@ class Artist(Base):
     top_tracks = relationship("TopTrack", back_populates="artist")
     top_artist_rankings = relationship("TopArtist", back_populates="artist")
     listening_history = relationship("ListeningHistory", back_populates="artist")
+    show_appearances = relationship("ShowArtist", back_populates="artist")
 
 class TopTrack(Base):
     __tablename__ = 'top_tracks'

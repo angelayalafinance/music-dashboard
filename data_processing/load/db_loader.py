@@ -4,24 +4,23 @@ from sqlalchemy.dialects.sqlite import insert as sqlite_upsert
 import pandas as pd
 import os
 from typing import Dict, List
-import logging
 from sqlalchemy import create_engine, and_
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime
+from utils.logger import etl_logger
 
 # Import your SQLAlchemy models
-from database.db import Base, Artist, TopTrack, TopArtist, ListeningHistory
+from database.models import Artist, TopTrack, TopArtist, ListeningHistory
+from database.db import Base
 
-logger = logging.getLogger(__name__)
-
-class DatabaseLoaderBulk:
+class DatabaseLoader:
     def __init__(self, db_url: str = None):
         if db_url is None:
-            db_path = "../database/spotify_data.db"
+            db_path = "../database/data.db"
             os.makedirs(os.path.dirname(db_path), exist_ok=True)
             db_url = f"sqlite:///{db_path}"
-        
+
         self.engine = create_engine(db_url)
         self.Session = sessionmaker(bind=self.engine)
         Base.metadata.create_all(bind=self.engine)
@@ -48,11 +47,11 @@ class DatabaseLoaderBulk:
                 session.bulk_insert_mappings(ListeningHistory, transformed_data['listening_history'])
             
             session.commit()
-            logger.info("Successfully loaded all Spotify data using bulk operations")
+            etl_logger.info("Successfully loaded all Spotify data using bulk operations")
             
         except SQLAlchemyError as e:
             session.rollback()
-            logger.error(f"Bulk database loading error: {e}")
+            etl_logger.error(f"Bulk database loading error: {e}")
             raise
         finally:
             session.close()

@@ -2,9 +2,7 @@
 import pandas as pd
 from datetime import datetime, timedelta
 from typing import Dict, List, Any
-import logging
-
-logger = logging.getLogger(__name__)
+from utils.logger import etl_logger
 
 class SpotifyDataTransformer:
     def __init__(self):
@@ -45,7 +43,7 @@ class SpotifyDataTransformer:
                     raw_data['recently_played']
                 )
             
-            logger.info(f"Transformed {len(transformed['artists'])} artists, "
+            etl_logger.info(f"Transformed {len(transformed['artists'])} artists, "
                        f"{len(transformed['top_tracks'])} top tracks, "
                        f"{len(transformed['top_artists'])} top artists, "
                        f"{len(transformed['listening_history'])} listening records")
@@ -53,7 +51,7 @@ class SpotifyDataTransformer:
             return transformed
             
         except Exception as e:
-            logger.error(f"Transformation failed: {e}")
+            etl_logger.error(f"Transformation failed: {e}")
             raise
     
     def _transform_artists(self, raw_data: Dict) -> List[Dict]:
@@ -77,12 +75,6 @@ class SpotifyDataTransformer:
         # Extract from recently played
         if 'recently_played' in raw_data:
             for item in raw_data['recently_played']:
-                for artist in item['track']['artists']:
-                    self._add_artist_to_map(artists_map, artist)
-        
-        # Extract from saved tracks
-        if 'saved_tracks' in raw_data:
-            for item in raw_data['saved_tracks']:
                 for artist in item['track']['artists']:
                     self._add_artist_to_map(artists_map, artist)
         
