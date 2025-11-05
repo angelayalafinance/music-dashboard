@@ -1,0 +1,7 @@
+dotenv
+pandas
+aider-install
+requests
+sqlalchemy
+apache-airflow
+python-json-logger
