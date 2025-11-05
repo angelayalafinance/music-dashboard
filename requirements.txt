@@ -6,3 +6,6 @@ sqlalchemy
 apache-airflow
 python-json-logger
 geopy
+dash
+flask_sqlalchemy
+dash-bootstrap-components
