@@ -10,7 +10,7 @@ def Header(app):
                     dbc.Collapse(
                         dbc.Nav(
                             [
-                                dbc.NavItem(dbc.NavLink("Home", href='daily-stats')),
+                                dbc.NavItem(dbc.NavLink("Home", href='home')),
                                 dbc.NavItem(dbc.NavLink("Listening", href='listening')),
                                 dbc.NavItem(dbc.NavLink("Live", href='live')),
                             ],
