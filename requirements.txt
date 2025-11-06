@@ -9,3 +9,4 @@ geopy
 dash
 flask_sqlalchemy
 dash-bootstrap-components
+geopy
