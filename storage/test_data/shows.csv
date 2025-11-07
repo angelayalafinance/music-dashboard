@@ -1,0 +1,35 @@
+show_id,venue_id,show_name,show_date,ticket_price,is_festival
+1,3,Warlando Fest,9/21/2021,20.97,TRUE
+2,6,American Siege 2022,4/21/2022,44.05,
+3,4,Devastation on the Nation 2022,05/14/2022,40.05,
+4,18,Maryland Deathfest 2022,05/27/2022,130,
+6,1,Incantation,06/26/2022,27,
+7,2,Home Video 2022,10/7/2022,33.7,
+8,2,Return: Beneath Arise,10/18/2022,43.22,
+9,1,Divine Ascension Tour,10/20/2022,32.47,
+10,8,Slave To The Grave Tour,11/18/2022,26.99,
+11,5,Great Heathen Army Tour,11/19/2022,54.45,
+12,8,Exhumed,12/03/2022,26.99,
+13,6,Cannibal Corpse,12/10/2022,40.31,
+14,7,FYA 9,01/07/2023,100,TRUE
+15,1,Soulfly,02/09/2023,29.32,
+16,10,Death To All,03/21/2023,43.31,
+17,12,Carcass,04/11/2023,36,
+18,10,Ingested,05/07/2023,24.61,
+19,9,Dark Funeral,05/21/2023,41.11,
+20,10,Havok,07/30/2023,32.31,
+21,10,Frozen Soul,11/03/2023,26.81,
+22,21,Magnitude Record Release Show,02/17/2024,23.18,
+23,20,LDBBB Fest,03/22/2024,199,TRUE
+24,19,Tied Down 3,06/01/2024,180,TRUE
+25,10,Nails,09/18/2024,33.75,
+26,10,PeelingFlesh,09/20/2024,28.05,
+27,19,Tied Down 4,06/01/2025,180,TRUE
+28,13,Turn Cold,07/20/2025,16.75,
+29,15,Catharsis,08/08/2025,14.04,
+30,13,Eyez Wide Shut,08/09/2025,16.75,
+31,13,919 Day,09/19/2025,27.25,
+32,14,Deafheaven,09/23/2025,33.25,
+33,10,200 Stab Wounds,10/19/2025,30,
+34,16,Hallowolfbat,10/25/2025,35,
+35,4,Machine Head,12/13/2022,33.93,
