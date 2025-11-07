@@ -34,6 +34,7 @@ class VenueGeocoder:
                 time.sleep(1)  # Rate limiting
                 
             except Exception as e:
+                print(f"Geocoding error for '{search_query}': {e}")
                 continue
         
         return None, None
@@ -60,7 +61,7 @@ class VenueGeocoder:
     def _safe_geocode(self, query: str) -> Optional[Tuple[float, float]]:
         """Safe geocoding with error handling"""
         try:
-            location = self.geolocoder.geocode(query)
+            location = self.geolocator.geocode(query)
             return (location.latitude, location.longitude) if location else None
         except GeocoderTimedOut:
             return None
