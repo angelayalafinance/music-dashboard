@@ -5,3 +5,4 @@ requests
 sqlalchemy
 apache-airflow
 python-json-logger
+geopy
