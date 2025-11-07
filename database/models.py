@@ -9,7 +9,6 @@ class MusicVenue(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     location = Column(String, nullable=False)
-    capacity = Column(Integer)
     latitude = Column(Numeric(10, 6))  # For maps
     longitude = Column(Numeric(10, 6))  # For maps
     created_at = Column(DateTime, server_default=func.now())
@@ -23,9 +22,11 @@ class ShowEvent(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     venue_id = Column(Integer, ForeignKey('music_venues.id'), nullable=False)
+    event = Column(String, nullable=False)
     date = Column(DateTime, nullable=False)
     ticket_price = Column(Numeric)
     notes = Column(Text)
+    is_festival = Column(Boolean, default=False)
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
     
@@ -40,7 +41,6 @@ class ShowArtist(Base):
     id = Column(Integer, primary_key=True, index=True)
     artist_id = Column(String, ForeignKey('artists.id'), nullable=False)
     show_id = Column(Integer, ForeignKey('show_events.id'), nullable=False)
-    set_order = Column(Integer)  # Performance order
     is_headliner = Column(Boolean, default=False)
     set_rating = Column(Integer)  # Rating out of 10
     notes = Column(Text)
