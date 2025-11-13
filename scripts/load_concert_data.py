@@ -1,8 +1,15 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
+
 import pandas as pd
 import os
 from data_processing.extract.geocoder import VenueGeocoder
 from database.db import SessionLocal, engine
-from database.models import MusicVenue, ShowArtist, ShowEvent
+from database.models import MusicVenue, ShowArtist, ShowEvent, Artist
+from data_processing.extract.spotify_extract import SpotifyDataExtractor
 
 TEST_DATA_PATH = os.path.join('storage', 'test_data')\
 
@@ -47,8 +54,6 @@ def process_show_data(df):
     shows_df['is_festival'] = shows_df['is_festival'].fillna(False).astype(bool)
     return shows_df.to_dict(orient='records')
 
-
-
 def insert_show_events():
     # Load the legacy show events
     file_path = os.path.join(TEST_DATA_PATH, 'shows.csv')
@@ -56,3 +61,77 @@ def insert_show_events():
     shows_df = process_show_data(shows)
 
     bulk_insert_records(shows_df, ShowEvent)
+
+def process_show_artist_data(df):
+    """Process show artist data from a DataFrame"""
+    df = pd.read_csv(os.path.join(TEST_DATA_PATH, 'show_artists.csv'))
+    show_artists_df = df[['show_id', 'artist_name', 'performance_time', 'is_headliner']]
+
+
+    #### TO do: Query the Database for Artists,
+    artists = SessionLocal().query(Artist).all()
+    artists = pd.DataFrame([{
+        'id': artist.id,
+        'name': artist.name
+    } for artist in artists])
+    ### If artist not found, use the Spotify Extractor to search for the artist
+    extract = SpotifyDataExtractor()
+
+    def add_artist_not_in_db(artist_name: str):
+        result = extract.search_artist(artist_name)
+        if result['artists']['items']:
+            artist_info = result['artists']['items'][0]
+            new_artist = {
+                'id': artist_info['id'],
+                'name': artist_info['name'],
+                'genre': ', '.join(artist_info['genres']),
+                'popularity': artist_info['popularity'],
+                'followers': artist_info['followers']['total'],
+                'spotify_url': artist_info['external_urls']['spotify'],
+                'image_url': artist_info['images'][0]['url'] if artist_info['images'] else None
+            }
+            bulk_insert_records([new_artist], Artist)
+            return new_artist['id']
+        return None
+
+
+
+    show_artists = show_artists_df['artist_name'].str.lower()\
+                                                 .str.replace(' ', '_')\
+                                                 .unique()\
+                                                 .tolist()
+
+    existing_artsits = artists['name'].str.lower()\
+                                      .str.replace(' ', '_')\
+                                      .tolist()
+    
+    artists_to_fetch = list(set(show_artists) - set(existing_artsits))
+
+    fetched_artists = []
+    for artist_name in artists_to_fetch:
+        artist_name = artist_name.replace('_', ' ').title()
+        result = extract.search_artist(artist_name)
+        if result['artists']['items']:
+            artist_info = result['artists']['items'][0]
+            new_artist = {
+                'id': artist_info['id'],
+                'name': artist_info['name'],
+                'genre': ', '.join(artist_info['genres']),
+                'popularity': artist_info['popularity'],
+                'followers': artist_info['followers']['total'],
+                'spotify_url': artist_info['external_urls']['spotify'],
+                'image_url': artist_info['images'][0]['url'] if artist_info['images'] else None
+            }
+            fetched_artists.append(new_artist)
+
+
+            bulk_insert_records([new_artist], Artist)
+
+
+
+
+
+    show_artists_df.columns = ['show_id', 'name', 'performance_time', 'is_headliner']
+    show_artists_df['performance_time'] = pd.to_datetime(show_artists_df['performance_time'])
+    show_artists_df['is_headliner'] = show_artists_df['is_headliner'].fillna(False).astype(bool)
+    return show_artists_df.to_dict(orient='records')
