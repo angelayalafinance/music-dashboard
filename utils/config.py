@@ -8,7 +8,7 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 load_dotenv(os.path.join(ROOT_DIR, '.env'))
 
 # Database path
-DB_PATH = os.path.join(ROOT_DIR, 'database', 'data.db')
+DB_PATH = os.path.join(ROOT_DIR, 'storage', 'database', 'data.db')
 DB_URL = f"sqlite:///{DB_PATH}"
 
 # Logs directory path
