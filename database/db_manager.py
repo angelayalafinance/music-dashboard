@@ -2,6 +2,7 @@
 from typing import List, Dict, Any, Optional
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
+import pandas as pd
 
 from .db import SessionLocal
 
@@ -33,19 +34,7 @@ class DatabaseManager:
                 for key, value in filters.items():
                     if hasattr(model, key):
                         query = query.filter(getattr(model, key) == value)
-            return query.all()
-        finally:
-            session.close()
-    
-    def get_one(self, model: Any, filters: Dict) -> Optional[Any]:
-        """Get a single record matching filters"""
-        session = self.session_factory()
-        try:
-            query = session.query(model)
-            for key, value in filters.items():
-                if hasattr(model, key):
-                    query = query.filter(getattr(model, key) == value)
-            return query.first()
+            return pd.DataFrame([obj.__dict__ for obj in query.all()])
         finally:
             session.close()
 

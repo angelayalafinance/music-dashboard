@@ -21,9 +21,9 @@ def search_and_extract_artist(artist_name: str) -> dict:
     return None
 
 
-def add_artist_not_in_db(artist_name: str, db: DatabaseManager) -> str:
+def add_artist_not_in_db(artist_name: str, db_manager: DatabaseManager) -> str:
     """Search for an artist and add to the database if not found"""
     result = search_and_extract_artist(artist_name)
     if result:
-        success = db.bulk_insert([result], Artist)
+        success = db_manager.bulk_insert([result], Artist)
         return result['id'] if success else None
