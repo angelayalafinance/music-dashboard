@@ -174,7 +174,6 @@ class SpotifyDataTransformer:
                 'artist_id': primary_artist['id'],
                 'artist_name': primary_artist['name'],
                 'played_at': datetime.fromisoformat(item['played_at'].replace('Z', '+00:00')),
-                'context': item.get('context', {}).get('type', 'unknown'),  # playlist, album, etc.
                 'extracted_at': self.execution_date,
                 'created_at': self.execution_date
             })
