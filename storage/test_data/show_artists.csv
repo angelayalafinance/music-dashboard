@@ -1,0 +1,262 @@
+show_id,artist,is_headliner,set_rating
+1,Judas Priest,TRUE,9
+1,Sabaton,,4
+1,Soulfly,,6.5
+1,Ill Nino,,4
+1,Uncured,,3
+1,Rising Up Angry,,3
+1,Twin Void,,3
+1,Tommy Vext,,3
+1,The Convalescence,,4
+1,Cutthroat,,N/A
+1,Sworn Enemy,,N/A
+1,Madzilla,,N/A
+2,Behemoth,,8
+2,Arch Enemy,TRUE,6
+2,Napalm Death,,5
+2,Unto Others,,6
+3,Rotting Christ,TRUE,8
+3,Borknagar,,5
+3,Wolfheart,,6
+3,Abigail Williams,,6
+4,Carcass,,9.5
+4,Atheist,,6.5
+4,Massacre,,5
+4,Monstrosity,,5
+4,Obituary,,9
+4,Suffocation,,7
+4,Vio-lence,,7
+4,Demolition Hammer,,7
+4,Blood Incantation,,4
+4,Demilich,,8
+4,Destruction,,5
+4,Hypocrisy,,5
+4,Nunslaughter,,6
+4,Hellhammer,,7
+4,Deicide,,8.5
+4,Immolation,,7.5
+5,Incantation,TRUE,3
+5,Goatwhore,,N/A
+5,Bewitcher,,5
+5,Caveman Cult,,5
+6,Lucy Dacus,TRUE,6
+7,Cavalera,TRUE,8
+7,Bewitcher,,6
+8,Psycroptic,TRUE,N/A
+8,Fallujah,,6
+8,Cognitive,,5
+8,Interloper,,5
+9,Undeath,TRUE,8
+9,200 Stab Wounds,,8.5
+9,Enforced,,7.5
+9,Phobophilic,,6
+10,Amon Amarth,TRUE,9
+10,Carcass,,9.5
+10,Obituary,,8.5
+10,Cattle Decapitation,,8
+11,Exhumed,TRUE,8
+11,Escuela Grind,,7
+11,Vitriol,,7.5
+11,Castrator,,6.5
+12,Cannibal Corpse,TRUE,8.5
+12,Dark Funeral,,6
+12,Immolation,,6
+12,Black Anvil,,5
+13,Life Of Agony,TRUE,N/A
+13,Fiddlehead,,N/A
+13,Bulldoze,,6
+13,Pain of Truth,,7
+13,Sunami,,7
+13,Crown of Thornz,,7.5
+13,200 Stab Wounds,,7.5
+13,Age of Apocalypse,,6
+13,Anxious,,5
+13,Criminal Instinct,,N/A
+13,Echo Chamber,,N/A
+13,Fool's Game,,N/A
+13,Killing Pace,,N/A
+13,King Nine,,N/A
+13,Live It Down,,N/A
+13,Magnitude,,8.5
+13,Seed of Pain,,8.5
+13,Simulakra,,7
+13,Statement of Pride,,N/A
+13,Cold World,,N/A
+13,No Pressure,,7
+13,Drain,,8.5
+13,Mindforce,,10
+13,War Hungry,,7
+13,Gridiron,,8
+13,Adrienne,,8
+13,Buried Dreams,,N/A
+13,Chemical Fix,,N/A
+13,The Chisel,,7
+13,Contention,,8.5
+13,Dead Last,,N/A
+13,End It,,8
+13,Envision,,N/A
+13,Field of Flames,,N/A
+13,Never Again,,N/A
+13,New World Man,,N/A
+13,Raw Brigade,,9
+13,Wreckage,,8
+14,Soulfly,TRUE,7
+14,Bodybox,,5
+14,Half Heard Voices,,2
+15,Death To All,TRUE,9
+15,Suffocation,,7.5
+15,Nukem,,7.5
+16,Carcass,TRUE,9
+16,Municipal Waste,,9.5
+16,Sacred Reich,,7
+16,Creeping Death,,5
+17,Ingested,TRUE,4
+17,Devourment,,8
+17,Extermination Dismemberment,,7
+17,Organectomy,,8
+18,Dark Funeral,TRUE,6
+18,Cattle Decapitation,,8
+18,200 Stab Wounds,,7
+18,Blackbraid,,5
+19,Havok,TRUE,6
+19,Toxic Holocaust,,7
+19,I Am,,7
+19,Hammerhedd,,3
+20,Frozen Soul,TRUE,9
+20,200 Stab Wounds,,9
+20,Judiciary,,6
+20,Tribal Gaze,,7
+21,Magnitude,TRUE,8.5
+21,Ends Of Sanity,,6
+21,One Step Closer,,7
+21,Wreckage,,8
+21,Divine Right,,4
+22,Hatebreed,TRUE,N/A
+22,Obituary,,8.5
+22,Sunami,,6
+22,Twitching Tongues,,N/A
+22,Pain of Truth,,8.5
+22,Harms Way,,8.5
+22,Militarie Gun,,5
+22,King Nine,,9
+22,Sanction,,8
+22,Koyo,,4
+22,One Step Closer,,8
+22,Stateside,,3
+22,Anxious,,5
+22,Big Boy,,9.5
+22,Soul Blind,,8.5
+22,Hold My Own,,4
+22,Domain,,6
+22,Ends of Sanity,,4
+22,Balmora,,6
+22,Surfaced,,5
+22,Fiddlehead,,7
+22,Mindforce,,9
+22,Never Ending Game,,8.5
+22,Angel Dust,,7
+22,Sanguisugabogg,,8
+22,Gridiron,,8.5
+22,Gates To Hell,,6
+22,xWeaponX,,9.5
+22,Hands of God,,7
+22,Inclination,,7
+22,Two Witnesses,,6
+22,Missing Link,,6
+22,Apex Predator,,6
+23,Have Heart,TRUE,10
+23,Drain,,8
+23,Sunami,,6
+23,Terror,,9.5
+23,Youth of Today,,8
+23,No Pressure,,7
+23,Killing Time,,7
+23,100 Demons,,7
+23,Angel Dust,,7
+23,Gods Hate,,7.5
+23,Never Ending Game,,8.5
+23,Pity Sex,,6
+23,Soul Search,,9.5
+23,Twitching Tongues,,7.5
+23,Weekend Nachos,,7.5
+23,COA,,7
+23,Division of Mind,,6
+23,End It,,7
+23,Ends of Sanity,,5
+23,Gates To Hell,,5
+23,Hold My Own,,5
+23,Ingrown,,8
+23,Laid 2 Rest,,6
+23,Seed of Pain,,7
+23,Three Knee Deep,,6.5
+23,Trail of Lies,,N/A
+23,Bad Beat,,N/A
+23,Balmora,,N/A
+24,Nails,TRUE,7.5
+24,200 Stab Wounds,,7.5
+24,Mammoth Grinder,,4
+24,Judiciary,,6
+25,PeelingFlesh,TRUE,8
+25,Torture,,7
+25,Snuffed On Sight,,7.5
+25,Corpse Pile,,7.5
+25,Two-Piece,,8
+26,Turnstile,TRUE,N/A
+26,American Nightmare,,8
+26,Foundation,,9
+26,Speed,,N/A
+26,Fiddlehead,,9
+26,Judge,,N/A
+26,The Mongoloids,,N/A
+26,Sanguisugabogg,,6
+26,The Hope Conspiracy,,7
+26,Mindforce,,8
+26,Never Ending Game,,N/A
+26,Big Boy,,8
+26,Disgrace,,7.5
+26,Gridiron,,8
+26,Regional Justice Center,,6
+26,Trial,,9
+26,Vamachara,,7.5
+26,Volcano,,7.5
+26,The Wrongside,,8
+26,Apex Predator,,N/A
+26,Bad Beat,,8.5
+26,Combust,,8
+26,Crush Your Soul,,N/A
+26,D-Bloc,,6
+26,Twitching Tongues,,8
+26,Hold My Own,,5
+26,Holy Blade,,5
+26,Scarab,,7
+26,Whispers,,9
+26,Exit Strategy,,N/A
+27,Turn Cold,,6
+27,Lucky Feeling,,6.5
+27,Circle Five,,5
+27,Super Reg,,5
+27,Demonize,,5
+28,Catharsis,TRUE,6
+28,Scarecrow,,3
+28,Cyprian,,2
+30,Eyez Wide Shut,,6
+30,Spirit of Vengeance,,5
+30,Fading Signal,,7
+30,Owe You Nothing,,7.5
+30,Lucky Feeling,,7
+30,Demonize,,5
+30,Survival Tactics,,7.5
+30,Level 6,,5
+30,Jaw,,5
+30,True Purpose,,5
+31,Deafheaven,TRUE,8
+31,Harms Way,,8.5
+31,I Promised The World,,7.5
+32,200 Stab Wounds,TRUE,7
+32,Ingrown,,8.5
+32,No Cure,,6
+32,Bastardane,,4
+33,Eyehategod,TRUE,8
+33,Bat,,5
+33,Black Tusk,,4
+34,Machine Head,TRUE,7
