@@ -1,8 +1,8 @@
 # transform/spotify_transform.py
-import pandas as pd
 from datetime import datetime, timedelta
 from typing import Dict, List, Any
 from utils.logger import etl_logger
+from uuid import uuid4
 
 class SpotifyDataTransformer:
     def __init__(self):
@@ -179,3 +179,21 @@ class SpotifyDataTransformer:
             })
         
         return history
+    
+    def handle_artist_not_found(self, artist_name: str) -> Dict:
+        """
+        Handle cases where an artist is not found in Spotify data
+        Returns a placeholder artist record
+        """
+        etl_logger.warning(f"Artist '{artist_name}' not found in Spotify data.")
+        return {
+            'id': str(uuid4()),
+            'name': artist_name,
+            'genre': None,
+            'popularity': None,
+            'followers': None,
+            'spotify_url': None,
+            'image_url': None,
+            'created_at': self.execution_date,
+            'updated_at': self.execution_date
+        }

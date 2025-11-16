@@ -32,7 +32,7 @@ class SpotifyDataExtractor:
     
     def search_artist(self, artist_name: str) -> Dict:
         """Search for an artist by name"""
-        params = {'q': artist_name, 'type': 'artist', 'limit': 1}
+        params = {'q': artist_name, 'type': 'artist', 'limit': 10}
         return self.make_spotify_request("/search", params)
     
     def extract_all_data(self, time_ranges: List[str] = None) -> Dict:
