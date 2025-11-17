@@ -111,7 +111,6 @@ class ListeningHistory(Base):
     artist_id = Column(String, ForeignKey('artists.id'))
     artist_name = Column(String)
     played_at = Column(DateTime, nullable=False)
-    context = Column(String)
     extracted_at = Column(DateTime, nullable=False)
     created_at = Column(DateTime)
     
