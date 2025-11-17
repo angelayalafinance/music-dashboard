@@ -2,7 +2,7 @@ show_id,artist,is_headliner,set_rating
 1,Judas Priest,TRUE,9
 1,Sabaton,,4
 1,Soulfly,,6.5
-1,Ill Nino,,4
+1,Ill Niño,,4
 1,Uncured,,3
 1,Rising Up Angry,,3
 1,Twin Void,,3
@@ -40,7 +40,7 @@ show_id,artist,is_headliner,set_rating
 5,Bewitcher,,5
 5,Caveman Cult,,5
 6,Lucy Dacus,TRUE,6
-7,Cavalera,TRUE,8
+7,Cavalera Conspiracy,TRUE,8
 7,Bewitcher,,6
 8,Psycroptic,TRUE,N/A
 8,Fallujah,,6
@@ -179,7 +179,7 @@ show_id,artist,is_headliner,set_rating
 23,Soul Search,,9.5
 23,Twitching Tongues,,7.5
 23,Weekend Nachos,,7.5
-23,COA,,7
+23,Colin of Arabia,,7
 23,Division of Mind,,6
 23,End It,,7
 23,Ends of Sanity,,5
@@ -219,7 +219,7 @@ show_id,artist,is_headliner,set_rating
 26,Trial,,9
 26,Vamachara,,7.5
 26,Volcano,,7.5
-26,The Wrongside,,8
+26,The Wrong Side,,8
 26,Apex Predator,,N/A
 26,Bad Beat,,8.5
 26,Combust,,8

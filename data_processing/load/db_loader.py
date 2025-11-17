@@ -1,13 +1,10 @@
 # load/database_loader_bulk.py
-from sqlalchemy import insert, update
 from sqlalchemy.dialects.sqlite import insert as sqlite_upsert
-import pandas as pd
 import os
 from typing import Dict, List
 from sqlalchemy import create_engine, and_
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
-from datetime import datetime
 from utils.logger import etl_logger
 
 # Import your SQLAlchemy models

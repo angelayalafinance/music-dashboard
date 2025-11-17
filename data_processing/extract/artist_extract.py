@@ -2,15 +2,7 @@
 from database.models import Artist
 from database.db_manager import DatabaseManager
 from data_processing.extract.spotify_extract import SpotifyDataExtractor
-
-
-def clean_artist_name(artist_name: str) -> str:
-    """Clean and standardize artist name for searching"""
-    return artist_name.strip()\
-                      .lower()\
-                      .replace(' ', '_')\
-                      .replace('-', '_')\
-                      .replace("'", '')
+from data_processing.transform.utils import clean_artist_name
 
 def find_artist_match(artist_results: dict, artist_name: str) -> dict:
     """Find the best matching artist from search results"""
