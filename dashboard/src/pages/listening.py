@@ -6,11 +6,12 @@ import pandas as pd
 from sqlalchemy import func
 from database.db import get_db, SessionLocal
 from database.models import Artist, TopTrack, TopArtist, ListeningHistory
-
+from dashboard.src.components.header import Header
 
 # Spotify Analytics Page
 def create_layout(app):
     return html.Div([
+        Header(app),
         html.H2("🎧 Spotify Listening Analytics"),
         
         # Filters
@@ -63,14 +64,6 @@ def create_layout(app):
 
 
 def setup_callbacks(app):
-    stats_card_style = {
-        'padding': '20px',
-        'border': '1px solid #ddd',
-        'borderRadius': '5px',
-        'textAlign': 'center',
-        'width': '23%'
-    }
-
     # Spotify Analytics Callbacks
     @app.callback(
         [Output('stats-cards', 'children'),
@@ -107,19 +100,19 @@ def setup_callbacks(app):
                 html.Div([
                     html.H3(f"{total_artists}"),
                     html.P("Total Artists")
-                ], className='stats-card', style=stats_card_style),
+                ], className='stats-card'),
                 html.Div([
                     html.H3(f"{total_tracks}"),
                     html.P("Top Tracks")
-                ], className='stats-card', style=stats_card_style),
+                ], className='stats-card'),
                 html.Div([
                     html.H3(f"{recent_plays}"),
                     html.P("Recent Plays")
-                ], className='stats-card', style=stats_card_style),
+                ], className='stats-card'),
                 html.Div([
                     html.H3(f"{top_genre[0] if top_genre else 'N/A'}"),
                     html.P("Top Genre")
-                ], className='stats-card', style=stats_card_style)
+                ], className='stats-card', )
             ], style={'display': 'flex', 'justifyContent': 'space-between', 'marginBottom': '20px'})
             
             # Top Tracks Chart
